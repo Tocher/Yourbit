@@ -1,0 +1,40 @@
+<section data-ng-controller="PackageController" data-ng-init="showPackage()">
+    <div data-ng-show="status">
+        <div class="page-header">
+            <h1>Package details {{package.id}}</h1>
+        </div>
+        
+        <div style="display:inline-block;vertical-align:top;width:50%;">
+            <h3>Details</h3>
+            <small>
+                <em class="text-muted">Posted on {{getDate(package.creationDate)}} by {{authentication.user.displayName}}</em>
+            </small>
+             <p>
+                Download: <a href="/downloadYPackage?ypckId={{package.id}}">link</a>
+            </p>
+             <p>
+                Remove: <a href="/deleteYPackage?ypckId={{package.id}}">link</a>
+            </p>
+            <p>
+                Package size: <b>{{packageSizeString(package.size)}}</b>
+            </p>
+            <small>
+                Expiration date: {{getDate(package.expirationDate)}}
+            </small>
+
+            <h3>Package content</h3>
+            <ul data-ng-repeat="detail in details" class="package-details">
+                <li>{{detail.name}} <span>{{packageSizeString(detail.size)}}</span></li>
+            </ul>
+        </div>
+
+        <div style="display:inline-block;vertical-align:top;width:40%;">
+            <h3>FormResponse</h3>
+            {{package.yFormResponse}}
+        </div>
+    </div>
+
+    <div data-ng-show="!status">
+        <h3>{{error_msg}}</h3>
+    </div>
+</section>

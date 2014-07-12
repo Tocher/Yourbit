@@ -1,0 +1,22 @@
+<section data-ng-controller="AdminController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Admin panel</h1>
+    </div>
+    <div class="list-group">
+        <h4 style="padding:10px;"><a data-ng-href="#!/admin/new">Add new <i class="glyphicon glyphicon-plus"></i></a></h4>
+        <a data-ng-repeat="file in files" data-ng-href="#!/admin/{{file._id}}" class="list-group-item">
+            <div class="list-group-item-div">
+                <small class="list-group-item-text">{{file.created}} / {{file.user.displayName}}</small>
+                <h4 class="list-group-item-heading">{{file.name}}</h4>
+                <p class="list-group-item-text">{{file.description}}</p>
+            </div>
+            <div class="list-group-item-div">
+                <span><i class="glyphicon glyphicon-compressed"></i> 53%</span>
+                <span><i class="glyphicon glyphicon-save"></i></span>
+            </div>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!articles || articles.length">
+    	No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
+    </div>
+</section>

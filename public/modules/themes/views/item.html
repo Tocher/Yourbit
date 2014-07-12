@@ -1,0 +1,36 @@
+<section data-ng-controller="FormController" data-ng-init="showForm()">
+    <div class="page-header">
+        <div class="pull-right">
+            <button type="button" class="btn btn-success btn-s">
+                Save
+            </button>
+            <button type="button" class="btn btn-success btn-s">
+                Save As
+            </button>
+            <button type="button" class="btn btn-warning btn-s">
+                Cancel
+            </button>
+        </div>
+        <h1>General Form</h1>
+    </div>
+    
+    <div class="">
+        <div style="display:inline-block;vertical-align:top;width:40%;margin:10px;">
+            <h3>Preview</h3>
+            <form class="form form-main" enctype="multipart/form-data" method="post" action="uploadFiles" style="margin-top:30px;" name="ngform" sf-model="person" sf-form="form" sf-schema="schema" sf-decorator="{{decorator}}">
+      </form>
+        </div>
+        <div style="display:inline-block;vertical-align:top;width:40%;margin:10px;">
+            <div>
+                <h3>Form Code</h3>
+                <div ui-ace="{ theme: 'monokai',mode:'json'}"
+           ng-class="{red: !itParsesForm}" ng-model="formJson" class="form-control form"></div>
+            </div>
+            <div>
+                <h3>Schema Code</h3>
+                <div ui-ace="{ theme: 'monokai',mode:'json'}"
+           ng-class="{red: !itParses}" ng-model="schemaJson" class="form-control schema"></div>
+            </div>
+        </div>
+    </div>
+</section>

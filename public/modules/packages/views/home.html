@@ -1,0 +1,30 @@
+<section data-ng-controller="PackageController" data-ng-init="showAllPackage()">
+    <div class="page-header">
+        <h1>My Uploads</h1>
+    </div>
+
+    <div class="row" data-ng-if="no_pages" style="margin-bottom: 10px;">
+        <div data-ng-include src="'modules/packages/views/pagination.html'"></div>
+    </div>
+    
+
+    <div class="list-group" data-ng-show="status">
+        <a data-ng-repeat="pck in pck.pck_arr" data-ng-href="#!/packages/{{pck.id}}" class="list-group-item">
+            <div class="list-group-item-div">
+                <div class="pull-right">
+                    <p class="list-group-item-text">Package creation date: {{getDate(pck.creationDate)}}</p>
+                    <p class="list-group-item-text">Package expiration date: {{getDate(pck.expirationDate)}}</p>
+                </div>
+                <h4 class="list-group-item-heading">Name: {{pck.id}}</h4>
+                <h5 class="list-group-item-heading">ID: {{pck.id}}</h5>
+                <h5 class="list-group-item-heading">Package size: {{packageSizeString(pck.size)}}</h5>
+            </div>
+        </a>
+    </div>
+    <div data-ng-show="no_pck">
+        <h3>You haven't got any packages yet.</h3>
+    </div>
+    <div data-ng-show="!status">
+        <h3>{{error_msg}}</h3>
+    </div>
+</section>

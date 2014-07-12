@@ -1,0 +1,60 @@
+<div data-ng-controller="HomeController"> 
+    <section ng-file-drop data-ng-show="!uploadSuccess">
+
+    <div class="home-upload" data-ng-show="authentication.user">
+        <form class="form form-main form-home" enctype="multipart/form-data" method="post" action="uploadFiles" style="position:relative;margin-top:30px;" name="ngform" sf-model="packageData" sf-form="form" sf-schema="schema" sf-decorator="{{decorator}}">
+        </form>
+
+        <h3>Upload queue</h3>
+        <p>Queue length: {{ uploader.queue.length }}</p>
+         <p>
+            Queue progress:
+            <div class="progress" style="">
+                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+            </div>
+            <div class="files">
+                <ul>
+                    <li data-ng-repeat="package in packages">{{package.file.name}} <div class="progress"><div class="progress-bar" role="progressbar" ng-style="{ 'width': package.progress + '%' }" style=""></div></div></li>
+                </ul>
+            </div>
+        </p>
+        <div ng-show="uploader.isHTML5">
+            <div class="well my-drop-zone" style="width:50%;display:inline-block;vertical-align:top;" ng-file-over>
+                Drop files here
+            </div>
+            <div style="margin-left:20px;border:1px solid #ccc; padding:10px;display:inline-block;width:40%;vertical-align:top;">
+                <div data-ng-repeat="debug_msg in debug" style="margin:10px;border-bottom:1px solid #333;">{{debug_msg.msg}}</div>
+            </div>
+        </div>
+        <input ng-file-select type="file" multiple="true" ng-show="!uploader.isHTML5"/>
+        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+            <span class="glyphicon glyphicon-upload"></span> Upload all
+        </button>
+        <button type="button" class="btn btn-danger btn-s" ng-click="clearQueue()" ng-disabled="!uploader.queue.length">
+            <span class="glyphicon glyphicon-trash"></span> Remove all
+        </button>
+    </div>
+
+    <div class="home-welcome" data-ng-show="!authentication.user">
+        <h2>New on Yourbit? <br><a href="/#!/signin">authorize</a> or <a href="/#!/signup">sign up</a></h2>
+    </div>
+
+    <div class="dev-box" style="margin:30px;" data-ng-show="authentication.user">
+        <button type="button" class="btn btn-info btn-s" ng-click="fillData1()">
+            Fill Test Data
+        </button>
+        <button type="button" class="btn btn-danger btn-s" ng-click="testError1()">
+            Test File Upload Failure 1     
+        </button>
+        <button type="button" class="btn btn-danger btn-s" ng-click="testError2()">
+            Test File Upload Failure 2    
+        </button>
+    </div>
+
+    </section>
+
+    <section class="home-welcome" data-ng-show="uploadSuccess">
+        <h2>Package successfully uploaded!</h2>
+        <h3><a data-ng-href="/#!/">upload more</a></h3>
+    </section>
+</div>

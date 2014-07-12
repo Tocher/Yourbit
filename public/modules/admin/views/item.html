@@ -1,0 +1,23 @@
+<section data-ng-controller="AdminController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>{{file.name}}</h1>
+    </div>
+
+    <div class="pull-right">
+        <a class="btn btn-primary" href="/#!/admin/{{file._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <small>
+        <em class="text-muted">Posted on {{file.created}} by {{file.user.displayName}}</em>
+    </small>
+    <p class="lead">
+        {{file.description}}
+    </p>
+    <small>
+        File size: <b>{{file.size}}</b>
+    </small>
+</section>
